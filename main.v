@@ -12,6 +12,12 @@ pub mut:
 	cnt int
 }
 
+struct Data {
+pub mut:
+	id   int
+	lang string
+}
+
 fn main() {
 	app := App{}
 	vweb.run(mut app, port)
@@ -28,6 +34,16 @@ pub fn (app mut App) json_endpoint() {
 
 pub fn (app mut App) index() {
 	app.cnt++
+	slice_str := ["V", "Go", "C++", "Python", "Rust", "Ruby"]
+	mut datas := []Data
+	mut cnt := 0
+	for str in slice_str {
+		cnt++
+		datas << Data{
+			id: cnt
+			lang: str
+		}
+	}
 	$vweb.html()
 }
 
